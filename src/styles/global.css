@@ -1,0 +1,293 @@
+/* AB Combinator — global styles
+   Palette: ultramarine base, orange headlines, pink + yellow splashes.
+   Type: Fraunces (headlines) + DM Sans (body). */
+
+:root {
+  --ultra: #1E22C9;
+  --ultra-deep: #14168F;
+  --ultra-ink: #0D0F5C;
+  --orange: #FF942E;
+  --orange-deep: #E67A12;
+  --pink: #FF7AC6;
+  --yellow: #FFE24A;
+  --paper: #FFFFFF;
+  --paper-dim: rgba(17, 17, 17, 0.64);
+  --line: rgba(17, 17, 17, 0.12);
+  --ink: #111111;
+  --tint: #F3F2FF;
+
+  --font-display: "Fraunces", Georgia, serif;
+  --font-body: "DM Sans", system-ui, -apple-system, sans-serif;
+  --font-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+
+  --max: 1120px;
+  --gutter: 20px;
+  --radius: 14px;
+
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.55;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+img { max-width: 100%; display: block; }
+a { color: inherit; }
+button { font: inherit; cursor: pointer; }
+
+/* ---------- Type ---------- */
+h1, h2, h3, .display {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-variation-settings: "SOFT" 60, "WONK" 1, "opsz" 144;
+  letter-spacing: -0.02em;
+  line-height: 0.98;
+  color: var(--orange);
+  margin: 0;
+}
+h1 { font-size: clamp(2.9rem, 9vw, 6.4rem); }
+h2 { font-size: clamp(2.1rem, 5.4vw, 3.8rem); }
+h3 { font-size: clamp(1.4rem, 2.6vw, 1.9rem); line-height: 1.1; }
+h1 em, h2 em, h3 em, .display em {
+  font-style: italic;
+  font-weight: 500;
+  color: var(--ultra);
+  font-variation-settings: "SOFT" 100, "WONK" 1, "opsz" 144;
+}
+
+p { margin: 0 0 1em; }
+.lede {
+  font-size: clamp(1.1rem, 2vw, 1.35rem);
+  line-height: 1.45;
+  max-width: 38ch;
+}
+.muted { color: var(--paper-dim); }
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ultra);
+  margin: 0 0 14px;
+}
+
+/* ---------- Layout ---------- */
+.wrap {
+  width: 100%;
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+section { padding: clamp(64px, 10vw, 128px) 0; position: relative; }
+.grid-2 {
+  display: grid;
+  gap: 28px;
+  grid-template-columns: 1fr;
+}
+@media (min-width: 820px) {
+  .grid-2 { grid-template-columns: 1fr 1fr; gap: 56px; align-items: start; }
+}
+
+/* ---------- Splashes (pink / yellow) ---------- */
+.splash {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(60px);
+  opacity: 0.5;
+  pointer-events: none;
+  z-index: 0;
+  animation: drift 18s ease-in-out infinite alternate;
+}
+.splash.yellow { background: var(--yellow); }
+.splash.pink { background: var(--pink); animation-duration: 24s; }
+@keyframes drift {
+  from { transform: translate3d(0, 0, 0) scale(1); }
+  to   { transform: translate3d(40px, -30px, 0) scale(1.15); }
+}
+
+/* ---------- Buttons (retro bevel, modern size) ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 22px;
+  border-radius: 6px;
+  border: 2px solid var(--ink);
+  font-weight: 700;
+  font-size: 15px;
+  text-decoration: none;
+  background: var(--yellow);
+  color: var(--ink);
+  box-shadow: 4px 4px 0 var(--ink);
+  transition: transform 120ms var(--ease-out), box-shadow 120ms var(--ease-out), background 120ms;
+  user-select: none;
+}
+.btn:hover { transform: translate(-1px, -1px); box-shadow: 5px 5px 0 var(--ink); }
+.btn:active { transform: translate(3px, 3px); box-shadow: 1px 1px 0 var(--ink); }
+.btn.primary { background: var(--orange); }
+.btn.ghost { background: var(--paper); color: var(--ink); }
+.btn.blue { background: var(--ultra); color: var(--paper); }
+.btn.small { padding: 10px 16px; font-size: 14px; box-shadow: 3px 3px 0 var(--ink); }
+.btn.small:active { box-shadow: 1px 1px 0 var(--ink); }
+
+/* ---------- Window chrome (the retro seasoning) ---------- */
+.win {
+  background: var(--paper);
+  color: var(--ink);
+  border: 2px solid var(--ink);
+  border-radius: 8px;
+  box-shadow: 6px 6px 0 var(--ink);
+  overflow: hidden;
+}
+.win-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 12px;
+  background: var(--ultra);
+  color: var(--paper);
+  border-bottom: 2px solid var(--ink);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.06em;
+}
+.win-bar .dots { display: flex; gap: 6px; }
+.win-bar .dots i {
+  width: 10px; height: 10px; border-radius: 50%;
+  border: 1.5px solid var(--paper);
+  display: block;
+}
+.win-bar .dots i:nth-child(1) { background: var(--pink); }
+.win-bar .dots i:nth-child(2) { background: var(--yellow); }
+.win-bar .dots i:nth-child(3) { background: var(--orange); }
+.win-bar .title { flex: 1; text-align: center; opacity: 0.9; }
+.win-body { padding: 22px; }
+.win.on-blue { background: var(--ultra); color: var(--paper); border-color: var(--ink); }
+.win.on-blue .eyebrow { color: var(--yellow); }
+.win.on-blue h2 { color: var(--orange); }
+.win.on-blue .lede, .win.on-blue p { color: var(--paper); }
+.win.on-blue .tag.outline { color: var(--paper); border-color: var(--paper); }
+.win.on-blue .img-slot { border-color: rgba(255,255,255,0.45); background: repeating-linear-gradient(45deg, rgba(255,255,255,0.08) 0 10px, transparent 10px 20px); }
+.win.on-blue .img-slot .label { color: rgba(255,255,255,0.8); }
+
+/* ---------- Cards ---------- */
+.card {
+  position: relative;
+  background: var(--tint);
+  border: 1.5px solid var(--ink);
+  box-shadow: 4px 4px 0 var(--ink);
+  border-radius: var(--radius);
+  padding: 26px 24px;
+  overflow: hidden;
+}
+.card h3 { margin-bottom: 10px; }
+.card .num {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 2.6rem;
+  line-height: 1;
+  color: var(--ultra);
+  margin-bottom: 8px;
+  font-variation-settings: "SOFT" 100, "WONK" 1, "opsz" 144;
+}
+
+/* ---------- Image slots (placeholders until real photos land) ---------- */
+.img-slot {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  border: 2px dashed rgba(17, 17, 17, 0.3);
+  border-radius: var(--radius);
+  background:
+    repeating-linear-gradient(45deg, rgba(30,34,201,0.06) 0 10px, transparent 10px 20px);
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
+.img-slot img { width: 100%; height: 100%; object-fit: cover; }
+.img-slot .label {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #666;
+  text-align: center;
+  padding: 16px;
+}
+.img-slot.portrait { aspect-ratio: 4 / 5; }
+.img-slot.square { aspect-ratio: 1; }
+
+/* ---------- Scroll reveal ---------- */
+.reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 700ms var(--ease-out), transform 700ms var(--ease-out);
+}
+.reveal.in { opacity: 1; transform: none; }
+.reveal[data-delay="1"] { transition-delay: 90ms; }
+.reveal[data-delay="2"] { transition-delay: 180ms; }
+.reveal[data-delay="3"] { transition-delay: 270ms; }
+.reveal[data-delay="4"] { transition-delay: 360ms; }
+
+/* ---------- Ticker ---------- */
+.ticker {
+  border-top: 2px solid var(--ink);
+  border-bottom: 2px solid var(--ink);
+  background: var(--ultra);
+  color: var(--paper);
+  overflow: hidden;
+  white-space: nowrap;
+  padding: 12px 0;
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: 0.02em;
+}
+.ticker-track {
+  display: inline-flex;
+  gap: 40px;
+  animation: ticker 48s linear infinite;
+  will-change: transform;
+}
+.ticker-track span::after { content: "✦"; margin-left: 40px; color: var(--yellow); }
+@keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+.ticker:hover .ticker-track { animation-play-state: paused; }
+
+/* ---------- Utilities ---------- */
+.stack > * + * { margin-top: 14px; }
+.row { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+.hr { height: 2px; background: var(--line); border: 0; margin: 0; }
+.tag {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: var(--pink);
+  color: var(--ink);
+  font-weight: 700;
+}
+.tag.yellow { background: var(--yellow); }
+.tag.outline { background: transparent; color: var(--ink); border: 1.5px solid var(--ink); }
+.tag.blue { background: var(--ultra); color: var(--paper); }
+
+@media (prefers-reduced-motion: reduce) {
+  .splash, .ticker-track { animation: none; }
+  .reveal { opacity: 1; transform: none; transition: none; }
+  html { scroll-behavior: auto; }
+}

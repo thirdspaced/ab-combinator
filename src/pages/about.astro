@@ -1,0 +1,233 @@
+---
+import Base from '../layouts/Base.astro';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+const beliefs = [
+  { title: 'A kid\'s idea is a real idea.', body: 'Not a cute idea. Not a practice idea. If a ten-year-old wants to start a dog-walking business, the right response is "what\'s your price?"' },
+  { title: 'Critical thinking is a skill, not a trait.', body: 'You get better at it by using it on something you care about, over and over, with someone pushing back. That is the whole program.' },
+  { title: 'Grit is teachable.', body: 'The first version is always bad. Kids who learn that early, with support, stop being afraid of it.' },
+  { title: 'Real tools, real stakes.', body: 'Actual software, actual materials, actual people to talk to. Nothing is pretend here, which is exactly why they take it seriously.' },
+  { title: 'The kid drives.', body: 'I don\'t pick the project. I don\'t pick the answer. I point at resources, teach the next skill, and ask the hard question at the right moment.' },
+  { title: 'Finish the thing.', body: 'Every learner leaves with something that exists in the world. That is the only outcome I care about.' },
+];
+
+const faqs = [
+  { q: 'Who is this for?', a: 'Kids ages 6 to 14 who have something they want to make, start, or figure out. Cohorts are split into narrow age bands (6 to 8, 9 to 11, 12 to 14) that meet on different days.' },
+  { q: 'What does a week look like?', a: 'Two guided sessions with the cohort, plus open makerspace hours they can drop into to work on their project, use the gear, and be around other kids who are building. Between sessions they keep up their critical thinking journal, at least one entry a week.' },
+  { q: 'Where is it?', a: 'In person, in San Francisco, in a makerspace-style setting. Exact location details go out to families on the waitlist first.' },
+  { q: 'What does it cost?', a: 'Tuition is not set yet for the next cohort. I will send pricing to the waitlist before applications open, so nobody is surprised.' },
+  { q: 'How do applications work?', a: 'The kid applies. A parent fills in the logistics, but the application itself comes from the learner, in their own words. Spaces are limited and I do turn families down. The point is a room full of kids who want to be there.' },
+  { q: 'Is this a coding program? An AI thing?', a: 'No. Some kids will build software because their idea needs it. Others will build a product, a business, a campaign, a game. The constant is critical thinking, real-life skills, and finishing.' },
+  { q: 'Will my kid be on social media?', a: 'Never by face or name. I build this in public and share the work, but you will only ever see hands and blurred projects. Kids are referred to by role, like "this inventor," never by name.' },
+  { q: 'What happens at the end?', a: 'A showcase. Each learner puts their finished thing in front of people who take it seriously, and the strongest work earns things like a company visit, a workshop, or for the older band, an internship conversation. The showcase is the day it becomes real to everyone else. The building is the point.' },
+];
+---
+<Base title="About" current="about" description="What AB Combinator is, what we believe, and the questions parents ask. A cohort for kids ages 6 to 14 who want to build something real.">
+  <!-- INTRO -->
+  <section class="intro">
+    <div class="splash yellow" style="width:360px;height:360px;top:-120px;right:-100px;opacity:.45"></div>
+    <div class="splash pink" style="width:260px;height:260px;bottom:-80px;left:-80px;opacity:.4"></div>
+    <div class="wrap intro-inner">
+      <p class="eyebrow hero-in" style="--i:0">About</p>
+      <h1 class="hero-in" style="--i:1">A place where kids build <em>real things.</em></h1>
+      <p class="lede hero-in" style="--i:2">
+        AB Combinator is a cohort for kids ages 6 to 14 who have an idea and want it to exist. I teach the critical thinking and the real-world skills. They do the building.
+      </p>
+    </div>
+  </section>
+
+  <!-- BELIEFS -->
+  <section class="beliefs">
+    <div class="wrap">
+      <p class="eyebrow reveal">What I believe</p>
+      <h2 class="reveal" data-delay="1">Six things I'm <em>not</em> flexible on.</h2>
+      <ol class="belief-list">
+        {beliefs.map((b, i) => (
+          <li class="belief reveal" data-delay={String((i % 3) + 1)}>
+            <span class="belief-num">{String(i + 1).padStart(2, '0')}</span>
+            <div>
+              <h3>{b.title}</h3>
+              <p class="muted">{b.body}</p>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <!-- WHAT IT IS -->
+  <section class="what">
+    <div class="wrap grid-2">
+      <div>
+        <p class="eyebrow reveal">What it actually is</p>
+        <h2 class="reveal" data-delay="1">A cohort, a journal, a room full of <em>tools.</em></h2>
+      </div>
+      <div class="stack">
+        <p class="lede reveal" data-delay="2">
+          Small groups of kids in a narrow age band, meeting in person in San Francisco, each working on their own project from idea to finished thing.
+        </p>
+        <p class="reveal" data-delay="3">
+          It starts with my critical thinking journal, a guided project journal each learner keeps on their own. Then the cohort: guided sessions twice a week where I teach the next skill their project needs, plus open makerspace hours to build, use real gear, and work alongside other kids doing the same.
+        </p>
+        <p class="reveal" data-delay="3">
+          Along the way they learn to talk to strangers about their idea, write something that gets a reply, price a product, set up a store, present with a straight back. Work is assessed against a rubric the whole way through, so "good" is never a mystery.
+        </p>
+        <p class="reveal" data-delay="4">
+          At the end, a showcase in front of people who take it seriously. Then they go home with the thing they made.
+        </p>
+      </div>
+    </div>
+
+    <div class="wrap gallery">
+      <div class="img-slot reveal" data-delay="1"><span class="label">Photo slot<br />kid hands, prototype</span></div>
+      <div class="img-slot reveal" data-delay="2"><span class="label">Photo slot<br />the journal, open</span></div>
+      <div class="img-slot reveal" data-delay="3"><span class="label">Photo slot<br />the makerspace</span></div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq">
+    <div class="splash pink" style="width:320px;height:320px;top:20%;right:-140px;opacity:.3"></div>
+    <div class="wrap">
+      <p class="eyebrow reveal">Parents ask</p>
+      <h2 class="reveal" data-delay="1">The practical <em>stuff.</em></h2>
+      <div class="faq-list">
+        {faqs.map((f, i) => (
+          <details class="faq-item reveal" data-delay={String((i % 3) + 1)}>
+            <summary>
+              <span>{f.q}</span>
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </summary>
+            <p>{f.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- BIO -->
+  <section class="bio">
+    <div class="wrap">
+      <div class="win on-blue reveal">
+        <div class="win-bar">
+          <div class="dots"><i></i><i></i><i></i></div>
+          <span class="title">about_amy.txt</span>
+        </div>
+        <div class="win-body bio-body">
+          <div class="img-slot portrait"><span class="label">Photo slot<br />Amy</span></div>
+          <div class="stack">
+            <p class="eyebrow">Founder</p>
+            <h2 style="font-size:clamp(1.9rem,4vw,2.8rem)">Amanda Grutza</h2>
+            <p class="lede">Teacher, builder, born-and-raised New Yorker, now in San Francisco.</p>
+            <p>
+              I built the design and technology program at Portfolio School in New York, and most recently led tech and innovation at a school in San Francisco. Along the way I have shipped a lot of my own projects, which is how I know the gap between "I have an idea" and "it exists" is where all the learning is.
+            </p>
+            <p>
+              For years, parents asked me where to send a kid who wanted to build a project, an invention, or a business. There was never a good answer. AB Combinator is the answer. I'm building it in public, one cohort at a time.
+            </p>
+            <div class="row">
+              <button type="button" class="btn primary" data-open-waitlist>Join the waitlist</button>
+              <a href={base + "/"} class="btn ghost">Back home</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .intro { padding-top: clamp(56px, 9vw, 110px); overflow: hidden; }
+  .intro-inner { position: relative; z-index: 1; max-width: 760px; }
+  .intro h1 { font-size: clamp(2.6rem, 7.5vw, 5.2rem); margin-bottom: 22px; }
+  .hero-in {
+    opacity: 0;
+    transform: translateY(18px);
+    animation: hero-in 900ms var(--ease-out) forwards;
+    animation-delay: calc(var(--i, 0) * 110ms + 80ms);
+  }
+  @keyframes hero-in { to { opacity: 1; transform: none; } }
+
+  /* Beliefs */
+  .beliefs { background: var(--ultra); color: var(--paper); border-top: 2px solid var(--ink); border-bottom: 2px solid var(--ink); }
+  .beliefs .eyebrow { color: var(--yellow); }
+  .beliefs h2 em { color: var(--pink); }
+  .beliefs .muted { color: rgba(255,255,255,0.78); }
+  .beliefs .belief { border-top-color: rgba(255,255,255,0.2); }
+  .belief-list {
+    list-style: none;
+    margin: clamp(36px, 5vw, 60px) 0 0;
+    padding: 0;
+    display: grid;
+    gap: 0;
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 820px) { .belief-list { grid-template-columns: 1fr 1fr; column-gap: 48px; } }
+  .belief {
+    display: grid;
+    grid-template-columns: 56px 1fr;
+    gap: 14px;
+    padding: 24px 0;
+    border-top: 1px solid var(--line);
+  }
+  .belief h3 { margin-bottom: 8px; }
+  .belief-num {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1.9rem;
+    line-height: 1;
+    color: var(--pink);
+    font-variation-settings: "SOFT" 100, "WONK" 1, "opsz" 144;
+  }
+  .belief:nth-child(3n+2) .belief-num { color: var(--yellow); }
+  .belief:nth-child(3n+3) .belief-num { color: var(--orange); }
+
+  /* What */
+  .gallery {
+    margin-top: clamp(40px, 6vw, 72px);
+    display: grid;
+    gap: 16px;
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 700px) { .gallery { grid-template-columns: repeat(3, 1fr); } }
+
+  /* FAQ */
+  .faq { overflow: hidden; }
+  .faq-list { margin-top: clamp(32px, 5vw, 52px); max-width: 820px; }
+  .faq-item {
+    border-top: 1px solid var(--line);
+  }
+  .faq-item:last-child { border-bottom: 1px solid var(--line); }
+  .faq-item summary {
+    list-style: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    padding: 18px 0;
+    font-weight: 700;
+    font-size: 17px;
+  }
+  .faq-item summary::-webkit-details-marker { display: none; }
+  .faq-icon {
+    display: grid; place-items: center;
+    width: 28px; height: 28px;
+    border: 2px solid var(--ink);
+    border-radius: 6px;
+    background: var(--yellow);
+    color: var(--ink);
+    font-weight: 700;
+    box-shadow: 2px 2px 0 var(--ink);
+    transition: transform 200ms var(--ease-out), background 200ms;
+    flex: 0 0 auto;
+  }
+  .faq-item[open] .faq-icon { transform: rotate(45deg); background: var(--pink); }
+  .faq-item p { margin: 0 0 20px; color: var(--paper-dim); max-width: 62ch; }
+  .faq { background: var(--tint); border-top: 2px solid var(--ink); }
+
+  /* Bio */
+  .bio-body { display: grid; gap: 26px; grid-template-columns: 1fr; padding: 26px; }
+  @media (min-width: 820px) { .bio-body { grid-template-columns: 300px 1fr; gap: 40px; align-items: start; } }
+  .bio-body h2 { color: var(--orange); }
+</style>

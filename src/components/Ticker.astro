@@ -1,0 +1,26 @@
+---
+const items = [
+  'a letter to the governor',
+  'an arcade game',
+  'a dog-walking business with real customers',
+  'a Shopify store',
+  'a comic with a print run',
+  'a robot that waters the plants',
+  'a lemonade stand with an actual budget',
+  'a podcast with a season plan',
+  'a board game, playtested',
+  'an app for the school library',
+];
+// Doubled so the loop is seamless
+const loop = [...items, ...items];
+---
+<div class="ticker" aria-label="Things kids build here">
+  <div class="ticker-track">
+    <span class="lead">Things kids build here</span>
+    {loop.map((t) => <span>{t}</span>)}
+  </div>
+</div>
+
+<style>
+  .lead { color: var(--ultra); }
+</style>

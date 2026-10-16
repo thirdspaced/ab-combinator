@@ -1,0 +1,320 @@
+---
+import Base from '../layouts/Base.astro';
+import Ticker from '../components/Ticker.astro';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+const pillars = [
+  {
+    n: '01',
+    title: 'Critical thinking',
+    body: 'Ask a better question. Test the idea. Change your mind when the evidence says so. We practice this every week on their own project, never on a worksheet.',
+  },
+  {
+    n: '02',
+    title: 'Real-life skills',
+    body: 'Talking to a stranger about your idea. Writing a letter that gets answered. Pricing something. Setting up a store. The things adults do at work, sized for a kid who means it.',
+  },
+  {
+    n: '03',
+    title: 'Grit',
+    body: 'Prototypes break. Plans change. Learning to keep going when the first version is bad is most of the work, and it is teachable.',
+  },
+  {
+    n: '04',
+    title: 'A finished thing',
+    body: 'Every learner leaves with something that exists. Not a certificate. A product, a prototype, a plan, a business with a name.',
+  },
+];
+
+const steps = [
+  {
+    k: 'Start',
+    title: 'The journal',
+    body: 'Every learner starts with my critical thinking journal. Solo, on their own schedule, at least one entry a week. It is where the idea gets sharp before anyone touches a tool.',
+  },
+  {
+    k: 'Build',
+    title: 'The cohort',
+    body: 'Guided sessions twice a week, plus open makerspace hours to work, use the gear, and hang out with other kids who are also building something.',
+  },
+  {
+    k: 'Show',
+    title: 'The showcase',
+    body: 'At the end, they put it in front of people who take it seriously. The showcase is not the point. The thing they built is the point. The showcase is just the day it becomes real to everyone else.',
+  },
+];
+---
+<Base current="home">
+  <!-- HERO -->
+  <section class="hero" id="top">
+    <div class="splash yellow" style="width:380px;height:380px;top:-120px;right:-80px;"></div>
+    <div class="splash pink" style="width:320px;height:320px;bottom:-60px;left:-110px;"></div>
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <p class="eyebrow hero-in" style="--i:0">San Francisco · Ages 6 to 14 · In person</p>
+        <h1 class="hero-in" style="--i:1">January is full.<br />Get on <em>the list.</em></h1>
+        <p class="lede hero-in" style="--i:2">
+          A cohort where kids build the thing they keep talking about. An invention, a business, a game, a letter to the governor. Real work, real skills, and the critical thinking to pull it off.
+        </p>
+        <div class="row hero-in" style="--i:3">
+          <button type="button" class="btn primary" data-open-waitlist>Join the waitlist</button>
+          <a href={base + "/about"} class="btn ghost">What is this?</a>
+        </div>
+        <p class="hero-fine hero-in" style="--i:4">
+          <span class="tag yellow">Building in public</span>
+          <span class="muted">A company, not a camp. Run by a teacher who got tired of saying "nothing like that exists."</span>
+        </p>
+      </div>
+
+      <div class="hero-visual hero-in" style="--i:2">
+        <div class="win">
+          <div class="win-bar">
+            <div class="dots"><i></i><i></i><i></i></div>
+            <span class="title">cohort_status.txt</span>
+          </div>
+          <div class="win-body status">
+            <div class="status-row"><span>Cohort 01 (alpha)</span><span class="tag">In session</span></div>
+            <div class="status-row"><span>Cohort 02 · January</span><span class="tag">Full</span></div>
+            <div class="status-row"><span>Cohort 03 · Spring</span><span class="tag yellow">Waitlist open</span></div>
+            <div class="img-slot" style="margin-top:16px;aspect-ratio:16/10">
+              <span class="label">Photo slot<br />kid hands, blurred work</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Ticker />
+
+  <!-- WHY THIS EXISTS -->
+  <section class="why">
+    <div class="splash pink" style="width:300px;height:300px;top:10%;right:-120px;opacity:.35"></div>
+    <div class="wrap">
+      <div class="grid-2">
+        <div>
+          <p class="eyebrow reveal">Why this exists</p>
+          <h2 class="reveal" data-delay="1">Kids have real ideas.<br />Almost nobody <em>treats them that way.</em></h2>
+        </div>
+        <div class="stack why-copy">
+          <p class="lede reveal" data-delay="2">
+            For years, parents asked me the same question. My kid wants to build this thing. Where do I send them?
+          </p>
+          <p class="reveal" data-delay="3">
+            Usually the honest answer was nowhere. There are coding camps. There are pitch competitions. There is almost nothing that takes a nine-year-old's idea seriously, puts real tools and real adults in front of it, and teaches them how to think it through when it gets hard.
+          </p>
+          <p class="reveal" data-delay="3">
+            So I built it. The kid drives. I point at resources, teach the skill they need next, and get out of the way.
+          </p>
+        </div>
+      </div>
+
+      <div class="pillars">
+        {pillars.map((p, i) => (
+          <article class="card reveal" data-delay={String((i % 4) + 1)}>
+            <div class="num">{p.n}</div>
+            <h3>{p.title}</h3>
+            <p class="muted">{p.body}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="how">
+    <div class="splash yellow" style="width:360px;height:360px;bottom:-140px;left:30%;opacity:.3"></div>
+    <div class="wrap">
+      <p class="eyebrow reveal">How a cohort works</p>
+      <h2 class="reveal" data-delay="1">Think. Build. <em>Show it.</em></h2>
+      <div class="steps">
+        {steps.map((s, i) => (
+          <div class="step reveal" data-delay={String(i + 1)}>
+            <div class="step-k">{s.k}</div>
+            <h3>{s.title}</h3>
+            <p class="muted">{s.body}</p>
+          </div>
+        ))}
+      </div>
+
+      <div class="bands reveal" data-delay="2">
+        <div class="win on-blue">
+          <div class="win-bar">
+            <div class="dots"><i></i><i></i><i></i></div>
+            <span class="title">cohorts.cfg</span>
+          </div>
+          <div class="win-body bands-body">
+            <div>
+              <p class="eyebrow" style="margin-bottom:6px">Age bands</p>
+              <div class="row">
+                <span class="tag outline">6 to 8</span>
+                <span class="tag outline">9 to 11</span>
+                <span class="tag outline">12 to 14</span>
+              </div>
+            </div>
+            <div>
+              <p class="eyebrow" style="margin-bottom:6px">Group size</p>
+              <p style="margin:0">Small. On purpose. Narrow age bands, separate days.</p>
+            </div>
+            <div>
+              <p class="eyebrow" style="margin-bottom:6px">Applications</p>
+              <p style="margin:0">Real ones. The kid applies, not the parent. Spots are limited.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AMY -->
+  <section class="amy">
+    <div class="wrap grid-2">
+      <div class="img-slot portrait reveal">
+        <span class="label">Photo slot<br />Amy, front and center</span>
+      </div>
+      <div class="stack">
+        <p class="eyebrow reveal">Who's running this</p>
+        <h2 class="reveal" data-delay="1">Hi, I'm Amy.</h2>
+        <p class="lede reveal" data-delay="2">
+          Teacher first. Builder second. New Yorker always.
+        </p>
+        <p class="reveal" data-delay="3">
+          I have spent my career building design and technology programs for kids, most recently in San Francisco. I have also built a lot of my own things, which is how I know that the gap between "I have an idea" and "it exists" is where all the learning lives.
+        </p>
+        <p class="reveal" data-delay="3">
+          AB Combinator is me finally answering the question parents kept asking. I'm building it in public, one cohort at a time.
+        </p>
+        <div class="row reveal" data-delay="4">
+          <a href={base + "/about"} class="btn">More about the program</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WAITLIST CTA -->
+  <section class="cta">
+    <div class="splash pink" style="width:420px;height:420px;top:-100px;left:-150px;opacity:.45"></div>
+    <div class="splash yellow" style="width:300px;height:300px;bottom:-120px;right:-60px;opacity:.45"></div>
+    <div class="wrap cta-inner">
+      <h2 class="reveal">Spots are limited.<br />Applications are <em>real.</em></h2>
+      <p class="lede reveal" data-delay="1">
+        January is full. The waitlist is for what comes next. Parents and kids each get their own form, because the kid should want this too.
+      </p>
+      <div class="row reveal" data-delay="2">
+        <button type="button" class="btn primary" data-open-waitlist>Join the waitlist</button>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  /* Hero */
+  .hero { padding-top: clamp(56px, 9vw, 110px); padding-bottom: clamp(56px, 8vw, 96px); overflow: hidden; }
+  .hero-grid {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    gap: 40px;
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 900px) {
+    .hero-grid { grid-template-columns: 1.25fr 1fr; align-items: center; gap: 56px; }
+  }
+  .hero-copy h1 { margin-bottom: 22px; }
+  .hero-copy .lede { margin-bottom: 26px; }
+  .hero-fine {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px;
+    margin-top: 26px;
+    font-size: 14px;
+    max-width: 48ch;
+  }
+  .hero-in {
+    opacity: 0;
+    transform: translateY(18px);
+    animation: hero-in 900ms var(--ease-out) forwards;
+    animation-delay: calc(var(--i, 0) * 110ms + 80ms);
+  }
+  @keyframes hero-in { to { opacity: 1; transform: none; } }
+
+  .hero-visual { transform: rotate(-1.2deg); }
+  .status { display: grid; gap: 10px; }
+  .hero-visual .win { background: var(--paper); }
+  .status-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 0;
+    border-bottom: 1px dashed rgba(0,0,0,0.18);
+    font-weight: 600;
+    font-size: 15px;
+  }
+  .status-row:nth-child(3) { border-bottom: 0; }
+
+  /* Why */
+  .why-copy { padding-top: 6px; }
+  .pillars {
+    margin-top: clamp(40px, 6vw, 72px);
+    display: grid;
+    gap: 16px;
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 640px) { .pillars { grid-template-columns: 1fr 1fr; } }
+  @media (min-width: 1000px) { .pillars { grid-template-columns: repeat(4, 1fr); } }
+  .pillars .card::after {
+    content: "";
+    position: absolute;
+    right: -40px; top: -40px;
+    width: 120px; height: 120px;
+    border-radius: 50%;
+    background: var(--yellow);
+    filter: blur(40px);
+    opacity: 0;
+    transition: opacity 400ms;
+  }
+  .pillars .card:nth-child(even)::after { background: var(--pink); }
+  .pillars .card:hover::after { opacity: 0.45; }
+
+  /* How */
+  .how { background: var(--ultra); color: var(--paper); border-top: 2px solid var(--ink); border-bottom: 2px solid var(--ink); overflow: hidden; }
+  .how .eyebrow { color: var(--yellow); }
+  .how h2 em { color: var(--pink); }
+  .how .muted { color: rgba(255,255,255,0.78); }
+  .how .win.on-blue { background: var(--paper); color: var(--ink); }
+  .how .win.on-blue .eyebrow { color: var(--ultra); }
+  .how .win.on-blue p { color: var(--ink); }
+  .how .win.on-blue .tag.outline { color: var(--ink); border-color: var(--ink); }
+  .steps {
+    margin-top: clamp(36px, 5vw, 64px);
+    display: grid;
+    gap: 28px;
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 820px) { .steps { grid-template-columns: repeat(3, 1fr); gap: 36px; } }
+  .step { position: relative; padding-top: 18px; border-top: 2px solid var(--pink); }
+  .step:nth-child(2) { border-top-color: var(--yellow); }
+  .step:nth-child(3) { border-top-color: var(--orange); }
+  .step-k {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.7);
+    margin-bottom: 10px;
+  }
+  .step h3 { margin-bottom: 10px; }
+  .bands { margin-top: clamp(40px, 6vw, 72px); }
+  .bands-body { display: grid; gap: 22px; grid-template-columns: 1fr; }
+  @media (min-width: 760px) { .bands-body { grid-template-columns: 1fr 1fr 1fr; gap: 28px; } }
+
+  /* Amy */
+  .amy .img-slot { max-width: 420px; }
+
+  /* CTA */
+  .cta { overflow: hidden; text-align: center; background: var(--tint); border-top: 2px solid var(--ink); }
+  .cta-inner { position: relative; z-index: 1; display: grid; justify-items: center; gap: 20px; }
+  .cta-inner .lede { max-width: 46ch; }
+</style>
