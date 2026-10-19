@@ -1,6 +1,11 @@
 # Waitlist forms (Tally)
 
-Two forms, built in Tally, embedded in the download window on the site. Build them at tally.so, then paste each form's ID into `src/site.config.ts`.
+Two forms, embedded in the download window on the site. Both are live and wired into `src/site.config.ts`:
+
+- Parent: `o96KbN` (https://tally.so/forms/o96KbN/edit)
+- Kid: `e5Z4xJ` (https://tally.so/forms/e5Z4xJ/edit)
+
+The spec below is what they were built from.
 
 Settings to use on both forms (Tally form > Settings):
 
