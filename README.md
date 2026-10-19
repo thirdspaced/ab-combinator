@@ -20,10 +20,22 @@ Push to `main` and `.github/workflows/deploy.yml` builds and publishes the site.
 ## Things to swap before launch
 
 1. **Tally forms.** Open `src/site.config.ts` and fill in `TALLY_PARENT` and `TALLY_KID` with your Tally form IDs (tally.so > form > Share > Embed, the ID is the bit after `tally.so/embed/`). The placeholder boxes turn into live embedded forms. The two form specs are in `docs/tally-forms.md`.
-2. **Photos.** Every `.img-slot` is a dashed placeholder. Drop images into `public/images/` and replace the `<span class="label">` inside a slot with `<img src="/images/your-file.jpg" alt="...">`. Kid hands and blurred work only, never faces or names.
+2. **Photos.** There are no image placeholders on the live site on purpose. When real photos exist, drop them in `public/images/` and add a `<figure>` with an `<img>` (always with alt text) where it belongs. Kid hands and blurred work only, never faces or names.
 3. **Social links.** `src/site.config.ts`, the `SOCIALS` object. Empty ones are hidden.
 4. **Cohort status.** The `cohort_status.txt` window on the home page and the dates in the footer are hand-typed. Update them as cohorts open and close.
 5. **Age bands.** Set to 6 to 8, 9 to 11, 12 to 14 in both pages. Search for `6 to 8` if that changes.
+
+## House rules for the design
+
+These keep the site from reading as template or AI-generated output. Check against them before shipping a change.
+
+- All text is Fraunces (headlines) or DM Sans (everything else). No monospace, no uppercase letterspaced labels, no pill tags.
+- No gradient blobs, no glow, no backdrop blur, no drop shadows. Color is used flat.
+- No scroll-triggered fade-ups. Motion lives in the ticker, the waitlist download bar, and button presses.
+- No icon + title + one-sentence card grids. Use rules, columns, and real paragraphs.
+- No placeholder boxes, no `href="#"`, no HTML section comments in the output.
+- One h1 per page, unique title and description, canonical tag, visible focus styles.
+- Copy: no em dashes, no "Not X. Not Y." fragments, no three-word triad headlines, no italic accent word on every heading (the hero gets one, that's it).
 
 ## Where things live
 

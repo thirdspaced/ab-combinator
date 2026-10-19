@@ -1,6 +1,4 @@
 ---
-// Tally form IDs live in src/site.config.ts. Until they're filled in,
-// the window shows a placeholder instead of the iframe.
 import { TALLY_PARENT, TALLY_KID } from '../site.config';
 const tallyUrl = (id: string) =>
   `https://tally.so/embed/${id}?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1`;
@@ -8,60 +6,47 @@ const tallyUrl = (id: string) =>
 <div class="wl-overlay" id="waitlist" hidden aria-hidden="true">
   <div class="wl-window win" role="dialog" aria-modal="true" aria-labelledby="wl-title">
     <div class="win-bar">
-      <div class="dots"><i></i><i></i><i></i></div>
-      <span class="title" id="wl-title">waitlist.exe</span>
-      <button type="button" class="win-close" data-close-waitlist aria-label="Close">×</button>
+      <span id="wl-title">Waitlist</span>
+      <button type="button" class="win-x" data-close-waitlist aria-label="Close">×</button>
     </div>
 
-    <!-- Stage 1: the download -->
-    <div class="wl-stage wl-download" data-stage="download">
-      <p class="wl-head">Downloading open spots…</p>
+    <div class="wl-stage" data-stage="download">
+      <p class="wl-head">Checking for open spots</p>
       <div class="wl-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
         <div class="wl-fill"></div>
       </div>
       <div class="wl-log" aria-live="polite">
-        <div class="wl-log-line" data-line>Connecting to the cohort…</div>
-        <div class="wl-log-line" data-line>Checking January…</div>
-        <div class="wl-log-line" data-line>January: FULL.</div>
-        <div class="wl-log-line" data-line>Checking what's next…</div>
-        <div class="wl-log-line" data-line>Found: 1 waitlist. Spots: limited.</div>
+        <p data-line>Connecting to the cohort</p>
+        <p data-line>Checking January</p>
+        <p data-line class="wl-full">January is full.</p>
+        <p data-line>Checking what's next</p>
+        <p data-line class="wl-open">Found one waitlist. Spots are limited.</p>
       </div>
       <div class="wl-actions" hidden>
-        <button type="button" class="btn small ghost-ink" data-close-waitlist>OK</button>
+        <button type="button" class="btn small" data-close-waitlist>OK</button>
         <button type="button" class="btn small primary" data-signup>Sign up</button>
       </div>
     </div>
 
-    <!-- Stage 2: who's signing up -->
-    <div class="wl-stage wl-form" data-stage="form" hidden>
-      <p class="wl-head">Who's this for?</p>
+    <div class="wl-stage" data-stage="form" hidden>
+      <p class="wl-head">Who is this for?</p>
       <div class="wl-tabs" role="tablist">
-        <button type="button" role="tab" class="wl-tab active" data-tab="parent" aria-selected="true">I'm a parent</button>
+        <button type="button" role="tab" class="wl-tab" data-tab="parent" aria-selected="true">I'm a parent</button>
         <button type="button" role="tab" class="wl-tab" data-tab="kid" aria-selected="false">I'm a kid</button>
       </div>
 
       <div class="wl-pane" data-pane="parent" role="tabpanel">
-        <p class="wl-note">Takes about a minute. I'll email you when applications open for the next cohort.</p>
-        {!TALLY_PARENT ? (
-          <div class="wl-placeholder">
-            <p><strong>Parent form goes here.</strong></p>
-            <p>Add your Tally form ID in <code>src/site.config.ts</code> and this becomes the live form.</p>
-          </div>
-        ) : (
-          <iframe data-tally-src={tallyUrl(TALLY_PARENT)} loading="lazy" width="100%" height="420" frameborder="0" marginheight="0" marginwidth="0" title="Parent waitlist"></iframe>
-        )}
+        <p class="wl-note">About a minute. I'll email you when applications open, with dates and pricing.</p>
+        {TALLY_PARENT
+          ? <iframe data-tally-src={tallyUrl(TALLY_PARENT)} loading="lazy" width="100%" height="420" frameborder="0" marginheight="0" marginwidth="0" title="Parent waitlist form"></iframe>
+          : <p class="wl-note">The parent form isn't connected yet.</p>}
       </div>
 
       <div class="wl-pane" data-pane="kid" role="tabpanel" hidden>
-        <p class="wl-note">Tell me what you want to build. Then grab a grown-up for the email part.</p>
-        {!TALLY_KID ? (
-          <div class="wl-placeholder">
-            <p><strong>Kid form goes here.</strong></p>
-            <p>Add your Tally form ID in <code>src/site.config.ts</code> and this becomes the live form.</p>
-          </div>
-        ) : (
-          <iframe data-tally-src={tallyUrl(TALLY_KID)} loading="lazy" width="100%" height="420" frameborder="0" marginheight="0" marginwidth="0" title="Kid waitlist"></iframe>
-        )}
+        <p class="wl-note">This part is for you. Tell me what you want to build, then grab a grown-up for the email bit.</p>
+        {TALLY_KID
+          ? <iframe data-tally-src={tallyUrl(TALLY_KID)} loading="lazy" width="100%" height="420" frameborder="0" marginheight="0" marginwidth="0" title="Kid waitlist form"></iframe>
+          : <p class="wl-note">The kid form isn't connected yet.</p>}
       </div>
     </div>
   </div>
@@ -75,120 +60,74 @@ const tallyUrl = (id: string) =>
     display: grid;
     place-items: center;
     padding: 20px;
-    background: rgba(30, 34, 201, 0.55);
-    backdrop-filter: blur(6px);
-    -webkit-backdrop-filter: blur(6px);
-    animation: fade 180ms ease-out;
+    background: rgba(17, 17, 17, 0.55);
   }
   .wl-overlay[hidden] { display: none; }
-  @keyframes fade { from { opacity: 0; } to { opacity: 1; } }
 
   .wl-window {
-    width: min(540px, 100%);
+    width: min(520px, 100%);
     max-height: calc(100vh - 40px);
     overflow: auto;
-    animation: pop 320ms var(--ease-out);
-    transform-origin: 50% 40%;
   }
-  @keyframes pop {
-    from { transform: scale(0.92) translateY(14px); opacity: 0; }
-    to { transform: none; opacity: 1; }
-  }
-  .win-close {
-    background: transparent;
-    border: 1.5px solid var(--paper);
-    color: var(--paper);
-    width: 22px; height: 22px;
-    border-radius: 4px;
-    line-height: 1;
-    font-size: 16px;
-    display: grid; place-items: center;
-    padding: 0;
-  }
-  .win-close:hover { background: var(--paper); color: var(--ink); }
 
-  .wl-stage { padding: 22px; }
+  .wl-stage { padding: 20px; }
   .wl-head {
     font-family: var(--font-display);
     font-weight: 600;
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     letter-spacing: -0.01em;
     color: var(--ink);
     margin: 0 0 14px;
-    font-variation-settings: "SOFT" 60, "WONK" 1, "opsz" 96;
+    font-variation-settings: "SOFT" 60, "WONK" 1, "opsz" 72;
   }
 
-  /* The progress bar: chunky, segmented, like an old file download */
   .wl-bar {
-    height: 26px;
-    border: 2px solid var(--ink);
-    border-radius: 4px;
-    background: #fff;
-    padding: 3px;
-    box-shadow: inset 2px 2px 0 rgba(0,0,0,0.12);
+    height: 24px;
+    border: 2px solid;
+    border-color: var(--bevel-dark) var(--bevel-light) var(--bevel-light) var(--bevel-dark);
+    background: var(--paper);
+    padding: 2px;
   }
   .wl-fill {
     height: 100%;
     width: 0%;
-    background:
-      repeating-linear-gradient(90deg, var(--ultra) 0 12px, transparent 12px 16px);
+    background: repeating-linear-gradient(90deg, var(--ultra) 0 10px, transparent 10px 13px);
     transition: width 240ms steps(4, end);
   }
   .wl-log {
     margin-top: 14px;
-    font-family: var(--font-mono);
-    font-size: 12.5px;
-    line-height: 1.6;
-    color: #333;
-    min-height: 5.5em;
+    font-size: 15px;
+    line-height: 1.5;
+    color: var(--ink-soft);
+    min-height: 7.5em;
   }
-  .wl-log-line { opacity: 0; transform: translateX(-6px); transition: opacity 200ms, transform 200ms; }
-  .wl-log-line.on { opacity: 1; transform: none; }
-  .wl-log-line:nth-child(3).on { color: var(--orange-deep); font-weight: 700; }
-  .wl-log-line:nth-child(5).on { color: var(--ultra); font-weight: 700; }
+  .wl-log p { margin: 0; visibility: hidden; }
+  .wl-log p.on { visibility: visible; }
+  .wl-log p.wl-full.on { color: var(--ink); font-weight: 700; }
+  .wl-log p.wl-open.on { color: var(--ultra); font-weight: 700; }
 
   .wl-actions {
     display: flex;
     justify-content: flex-end;
-    gap: 12px;
-    margin-top: 18px;
-    animation: fade 200ms ease-out;
+    gap: 10px;
+    margin-top: 16px;
   }
   .wl-actions[hidden] { display: none; }
-  .btn.ghost-ink { background: #fff; }
 
-  .wl-tabs {
-    display: flex;
-    gap: 8px;
-    margin-bottom: 16px;
-  }
+  .wl-tabs { display: flex; gap: 8px; margin-bottom: 14px; }
   .wl-tab {
     flex: 1;
     padding: 10px 12px;
     border: 2px solid var(--ink);
-    border-radius: 6px;
-    background: #fff;
+    border-radius: 3px;
+    background: var(--paper);
     color: var(--ink);
     font-weight: 700;
     font-size: 14px;
-    box-shadow: 3px 3px 0 var(--ink);
-    transition: transform 120ms var(--ease-out), box-shadow 120ms var(--ease-out);
   }
-  .wl-tab:active { transform: translate(2px, 2px); box-shadow: 1px 1px 0 var(--ink); }
-  .wl-tab.active { background: var(--pink); }
-  .wl-tab[data-tab="kid"].active { background: var(--yellow); }
-  .wl-note { font-size: 14px; color: #444; margin: 0 0 12px; }
+  .wl-tab[aria-selected="true"] { background: var(--ultra); color: var(--paper); }
+  .wl-note { font-size: 15px; color: var(--ink-soft); margin: 0 0 12px; }
   .wl-pane[hidden] { display: none; }
-  .wl-placeholder {
-    border: 2px dashed rgba(0,0,0,0.3);
-    border-radius: 8px;
-    padding: 18px;
-    font-size: 14px;
-    color: #444;
-    background: #fff;
-  }
-  .wl-placeholder p { margin: 0 0 6px; }
-  .wl-placeholder code { font-family: var(--font-mono); background: #eee; padding: 1px 5px; border-radius: 3px; }
 </style>
 
 <script is:inline>
@@ -217,7 +156,7 @@ const tallyUrl = (id: string) =>
       bar.setAttribute('aria-valuenow', '0');
       lines.forEach(function (l) { l.classList.remove('on'); });
 
-      // Progress steps + log lines, with a dramatic stall at "January: FULL."
+      // The bar stalls at "January is full" on purpose before finding the waitlist.
       var script = [
         [120, 12, 0], [420, 31, 1], [820, 44, 2], [1500, 58, 3], [1950, 81, null], [2300, 100, 4], [2650, null, 'done']
       ];
@@ -267,23 +206,21 @@ const tallyUrl = (id: string) =>
     }
 
     document.addEventListener('click', function (e) {
-      var t = e.target.closest ? e.target.closest('[data-open-waitlist]') : null;
-      if (t) { e.preventDefault(); open(); return; }
-      if (e.target.closest && e.target.closest('[data-close-waitlist]')) { close(); return; }
-      if (e.target === overlay) { close(); return; }
-      var su = e.target.closest ? e.target.closest('[data-signup]') : null;
-      if (su) {
+      var t = e.target;
+      if (!t.closest) return;
+      if (t.closest('[data-open-waitlist]')) { e.preventDefault(); open(); return; }
+      if (t.closest('[data-close-waitlist]')) { close(); return; }
+      if (t === overlay) { close(); return; }
+      if (t.closest('[data-signup]')) {
         showStage('form');
         loadTally(overlay.querySelector('[data-pane="parent"]'));
         return;
       }
-      var tab = e.target.closest ? e.target.closest('.wl-tab') : null;
+      var tab = t.closest('.wl-tab');
       if (tab) {
         var which = tab.getAttribute('data-tab');
         overlay.querySelectorAll('.wl-tab').forEach(function (b) {
-          var on = b === tab;
-          b.classList.toggle('active', on);
-          b.setAttribute('aria-selected', on ? 'true' : 'false');
+          b.setAttribute('aria-selected', b === tab ? 'true' : 'false');
         });
         overlay.querySelectorAll('.wl-pane').forEach(function (p) {
           var on = p.getAttribute('data-pane') === which;
@@ -297,7 +234,6 @@ const tallyUrl = (id: string) =>
       if (e.key === 'Escape' && !overlay.hidden) close();
     });
 
-    // Deep link: /#waitlist opens it
     if (location.hash === '#waitlist') open();
   })();
 </script>

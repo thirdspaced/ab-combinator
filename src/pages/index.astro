@@ -3,83 +3,61 @@ import Base from '../layouts/Base.astro';
 import Ticker from '../components/Ticker.astro';
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
-const pillars = [
+const learn = [
   {
-    n: '01',
     title: 'Critical thinking',
-    body: 'Ask a better question. Test the idea. Change your mind when the evidence says so. We practice this every week on their own project, never on a worksheet.',
+    body: 'How to ask a better question, test an idea, and change your mind when the evidence says to. We practice it on their own project every week, never on a worksheet.',
   },
   {
-    n: '02',
-    title: 'Real-life skills',
-    body: 'Talking to a stranger about your idea. Writing a letter that gets answered. Pricing something. Setting up a store. The things adults do at work, sized for a kid who means it.',
+    title: 'Skills adults actually use',
+    body: 'Talking to a stranger about your idea. Writing a letter that gets a reply. Pricing something. Setting up a store. The things grown-ups do at work, sized for a kid who means it.',
   },
   {
-    n: '03',
     title: 'Grit',
-    body: 'Prototypes break. Plans change. Learning to keep going when the first version is bad is most of the work, and it is teachable.',
+    body: 'Prototypes break and plans change. Learning to keep going when the first version is bad is most of the work, and it can be taught.',
   },
   {
-    n: '04',
-    title: 'A finished thing',
-    body: 'Every learner leaves with something that exists. Not a certificate. A product, a prototype, a plan, a business with a name.',
+    title: 'Finishing',
+    body: 'Every learner leaves with something that exists: a product, a prototype, a plan, a business with a name.',
   },
 ];
 
 const steps = [
   {
-    k: 'Start',
-    title: 'The journal',
-    body: 'Every learner starts with my critical thinking journal. Solo, on their own schedule, at least one entry a week. It is where the idea gets sharp before anyone touches a tool.',
+    label: 'The journal',
+    body: 'Every learner starts with my critical thinking journal. They keep it on their own, at least one entry a week, and it is where the idea gets sharp before anyone touches a tool.',
   },
   {
-    k: 'Build',
-    title: 'The cohort',
-    body: 'Guided sessions twice a week, plus open makerspace hours to work, use the gear, and hang out with other kids who are also building something.',
+    label: 'The cohort',
+    body: 'Guided sessions twice a week, where I teach the next skill their project needs, plus open makerspace hours to build, use the gear, and be around other kids who are also making something.',
   },
   {
-    k: 'Show',
-    title: 'The showcase',
-    body: 'At the end, they put it in front of people who take it seriously. The showcase is not the point. The thing they built is the point. The showcase is just the day it becomes real to everyone else.',
+    label: 'The showcase',
+    body: 'At the end, they put the finished thing in front of people who take it seriously. The strongest work earns a company visit, a workshop, or for the older band, an internship conversation.',
   },
 ];
 ---
 <Base current="home">
-  <!-- HERO -->
-  <section class="hero" id="top">
-    <div class="splash yellow" style="width:380px;height:380px;top:-120px;right:-80px;"></div>
-    <div class="splash pink" style="width:320px;height:320px;bottom:-60px;left:-110px;"></div>
+  <section class="hero">
     <div class="wrap hero-grid">
-      <div class="hero-copy">
-        <p class="eyebrow hero-in" style="--i:0">San Francisco · Ages 6 to 14 · In person</p>
-        <h1 class="hero-in" style="--i:1">January is full.<br />Get on <em>the list.</em></h1>
-        <p class="lede hero-in" style="--i:2">
-          A cohort where kids build the thing they keep talking about. An invention, a business, a game, a letter to the governor. Real work, real skills, and the critical thinking to pull it off.
+      <div>
+        <p class="kicker">San Francisco. Ages 6 to 14. In person.</p>
+        <h1>January is full.<br />Get on <em>the list.</em></h1>
+        <p class="lede">
+          AB Combinator is a cohort for kids who have an idea and want it to exist. A game, a business, an invention, a letter to the governor. I teach the thinking and the skills it takes to make it. They make it.
         </p>
-        <div class="row hero-in" style="--i:3">
+        <div class="row">
           <button type="button" class="btn primary" data-open-waitlist>Join the waitlist</button>
-          <a href={base + "/about"} class="btn ghost">What is this?</a>
+          <a href={base + "/about"} class="btn">What is this?</a>
         </div>
-        <p class="hero-fine hero-in" style="--i:4">
-          <span class="tag yellow">Building in public</span>
-          <span class="muted">A company, not a camp. Run by a teacher who got tired of saying "nothing like that exists."</span>
-        </p>
       </div>
 
-      <div class="hero-visual hero-in" style="--i:2">
-        <div class="win">
-          <div class="win-bar">
-            <div class="dots"><i></i><i></i><i></i></div>
-            <span class="title">cohort_status.txt</span>
-          </div>
-          <div class="win-body status">
-            <div class="status-row"><span>Cohort 01 (alpha)</span><span class="tag">In session</span></div>
-            <div class="status-row"><span>Cohort 02 · January</span><span class="tag">Full</span></div>
-            <div class="status-row"><span>Cohort 03 · Spring</span><span class="tag yellow">Waitlist open</span></div>
-            <div class="img-slot" style="margin-top:16px;aspect-ratio:16/10">
-              <span class="label">Photo slot<br />kid hands, blurred work</span>
-            </div>
-          </div>
+      <div class="win status">
+        <div class="win-bar"><span>Cohorts</span></div>
+        <div class="win-body">
+          <div class="status-row"><span>Alpha cohort</span><strong>In session now</strong></div>
+          <div class="status-row"><span>January 2027</span><strong class="is-full">Full</strong></div>
+          <div class="status-row"><span>The one after that</span><strong class="is-open">Waitlist open</strong></div>
         </div>
       </div>
     </div>
@@ -87,120 +65,82 @@ const steps = [
 
   <Ticker />
 
-  <!-- WHY THIS EXISTS -->
-  <section class="why">
-    <div class="splash pink" style="width:300px;height:300px;top:10%;right:-120px;opacity:.35"></div>
+  <section>
     <div class="wrap">
-      <div class="grid-2">
+      <div class="two-col">
         <div>
-          <p class="eyebrow reveal">Why this exists</p>
-          <h2 class="reveal" data-delay="1">Kids have real ideas.<br />Almost nobody <em>treats them that way.</em></h2>
+          <p class="kicker">Why this exists</p>
+          <h2>Kids have real ideas. Almost nobody treats them that way.</h2>
         </div>
-        <div class="stack why-copy">
-          <p class="lede reveal" data-delay="2">
+        <div class="stack">
+          <p class="lede">
             For years, parents asked me the same question. My kid wants to build this thing. Where do I send them?
           </p>
-          <p class="reveal" data-delay="3">
-            Usually the honest answer was nowhere. There are coding camps. There are pitch competitions. There is almost nothing that takes a nine-year-old's idea seriously, puts real tools and real adults in front of it, and teaches them how to think it through when it gets hard.
+          <p>
+            The honest answer was usually nowhere. There are coding camps. There are pitch competitions. There is almost nothing that takes a nine year old's idea seriously, puts real tools and real adults in front of it, and teaches them how to think it through when it gets hard.
           </p>
-          <p class="reveal" data-delay="3">
+          <p>
             So I built it. The kid drives. I point at resources, teach the skill they need next, and get out of the way.
           </p>
         </div>
       </div>
 
-      <div class="pillars">
-        {pillars.map((p, i) => (
-          <article class="card reveal" data-delay={String((i % 4) + 1)}>
-            <div class="num">{p.n}</div>
-            <h3>{p.title}</h3>
-            <p class="muted">{p.body}</p>
-          </article>
+      <h3 class="list-head">What they learn</h3>
+      <div class="deflist">
+        {learn.map((item) => (
+          <div>
+            <h3>{item.title}</h3>
+            <p class="soft">{item.body}</p>
+          </div>
         ))}
       </div>
     </div>
   </section>
 
-  <!-- HOW IT WORKS -->
-  <section class="how">
-    <div class="splash yellow" style="width:360px;height:360px;bottom:-140px;left:30%;opacity:.3"></div>
+  <section class="band">
     <div class="wrap">
-      <p class="eyebrow reveal">How a cohort works</p>
-      <h2 class="reveal" data-delay="1">Think. Build. <em>Show it.</em></h2>
+      <h2>How a cohort works</h2>
       <div class="steps">
-        {steps.map((s, i) => (
-          <div class="step reveal" data-delay={String(i + 1)}>
-            <div class="step-k">{s.k}</div>
-            <h3>{s.title}</h3>
-            <p class="muted">{s.body}</p>
+        {steps.map((s) => (
+          <div class="step">
+            <div class="step-label">{s.label}</div>
+            <p>{s.body}</p>
           </div>
         ))}
       </div>
-
-      <div class="bands reveal" data-delay="2">
-        <div class="win on-blue">
-          <div class="win-bar">
-            <div class="dots"><i></i><i></i><i></i></div>
-            <span class="title">cohorts.cfg</span>
-          </div>
-          <div class="win-body bands-body">
-            <div>
-              <p class="eyebrow" style="margin-bottom:6px">Age bands</p>
-              <div class="row">
-                <span class="tag outline">6 to 8</span>
-                <span class="tag outline">9 to 11</span>
-                <span class="tag outline">12 to 14</span>
-              </div>
-            </div>
-            <div>
-              <p class="eyebrow" style="margin-bottom:6px">Group size</p>
-              <p style="margin:0">Small. On purpose. Narrow age bands, separate days.</p>
-            </div>
-            <div>
-              <p class="eyebrow" style="margin-bottom:6px">Applications</p>
-              <p style="margin:0">Real ones. The kid applies, not the parent. Spots are limited.</p>
-            </div>
-          </div>
-        </div>
-      </div>
+      <p class="bands-note">
+        Cohorts are split into narrow age bands, 6 to 8, 9 to 11, and 12 to 14, on separate days, and kept small on purpose. The kid applies, not the parent. Spots are limited and I do turn families down, because this only works if every kid in the room wants to be there.
+      </p>
     </div>
   </section>
 
-  <!-- AMY -->
-  <section class="amy">
-    <div class="wrap grid-2">
-      <div class="img-slot portrait reveal">
-        <span class="label">Photo slot<br />Amy, front and center</span>
+  <section>
+    <div class="wrap two-col">
+      <div>
+        <p class="kicker">Who's running this</p>
+        <h2>Hi, I'm Amy.</h2>
       </div>
       <div class="stack">
-        <p class="eyebrow reveal">Who's running this</p>
-        <h2 class="reveal" data-delay="1">Hi, I'm Amy.</h2>
-        <p class="lede reveal" data-delay="2">
-          Teacher first. Builder second. New Yorker always.
+        <p class="lede">I'm a teacher who builds things, and a New Yorker who moved to San Francisco.</p>
+        <p>
+          I have spent my career building design and technology programs for kids, in New York and now here, and I have shipped a lot of my own projects along the way. That is how I know the gap between "I have an idea" and "it exists" is where all the learning happens.
         </p>
-        <p class="reveal" data-delay="3">
-          I have spent my career building design and technology programs for kids, most recently in San Francisco. I have also built a lot of my own things, which is how I know that the gap between "I have an idea" and "it exists" is where all the learning lives.
-        </p>
-        <p class="reveal" data-delay="3">
+        <p>
           AB Combinator is me finally answering the question parents kept asking. I'm building it in public, one cohort at a time.
         </p>
-        <div class="row reveal" data-delay="4">
-          <a href={base + "/about"} class="btn">More about the program</a>
-        </div>
+        <p><a href={base + "/about"}>More about the program</a></p>
       </div>
     </div>
   </section>
 
-  <!-- WAITLIST CTA -->
   <section class="cta">
-    <div class="splash pink" style="width:420px;height:420px;top:-100px;left:-150px;opacity:.45"></div>
-    <div class="splash yellow" style="width:300px;height:300px;bottom:-120px;right:-60px;opacity:.45"></div>
-    <div class="wrap cta-inner">
-      <h2 class="reveal">Spots are limited.<br />Applications are <em>real.</em></h2>
-      <p class="lede reveal" data-delay="1">
-        January is full. The waitlist is for what comes next. Parents and kids each get their own form, because the kid should want this too.
-      </p>
-      <div class="row reveal" data-delay="2">
+    <div class="wrap">
+      <hr class="rule" />
+      <div class="cta-inner">
+        <h2>Spots are limited and applications are real.</h2>
+        <p class="lede">
+          January is full. The waitlist is for what comes next. Parents and kids each get their own form, because the kid should want this too.
+        </p>
         <button type="button" class="btn primary" data-open-waitlist>Join the waitlist</button>
       </div>
     </div>
@@ -208,113 +148,50 @@ const steps = [
 </Base>
 
 <style>
-  /* Hero */
-  .hero { padding-top: clamp(56px, 9vw, 110px); padding-bottom: clamp(56px, 8vw, 96px); overflow: hidden; }
+  .hero { padding-top: clamp(48px, 8vw, 96px); padding-bottom: clamp(48px, 7vw, 88px); }
   .hero-grid {
-    position: relative;
-    z-index: 1;
     display: grid;
     gap: 40px;
     grid-template-columns: 1fr;
   }
   @media (min-width: 900px) {
-    .hero-grid { grid-template-columns: 1.25fr 1fr; align-items: center; gap: 56px; }
+    .hero-grid { grid-template-columns: 1.3fr 1fr; align-items: center; gap: 64px; }
   }
-  .hero-copy h1 { margin-bottom: 22px; }
-  .hero-copy .lede { margin-bottom: 26px; }
-  .hero-fine {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 12px;
-    margin-top: 26px;
-    font-size: 14px;
-    max-width: 48ch;
-  }
-  .hero-in {
-    opacity: 0;
-    transform: translateY(18px);
-    animation: hero-in 900ms var(--ease-out) forwards;
-    animation-delay: calc(var(--i, 0) * 110ms + 80ms);
-  }
-  @keyframes hero-in { to { opacity: 1; transform: none; } }
+  .hero h1 { margin-bottom: 22px; }
+  .hero .lede { margin-bottom: 24px; }
 
-  .hero-visual { transform: rotate(-1.2deg); }
-  .status { display: grid; gap: 10px; }
-  .hero-visual .win { background: var(--paper); }
+  .status .win-body { padding: 8px 20px; }
   .status-row {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: baseline;
     gap: 12px;
-    padding: 10px 0;
-    border-bottom: 1px dashed rgba(0,0,0,0.18);
-    font-weight: 600;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--rule);
     font-size: 15px;
   }
-  .status-row:nth-child(3) { border-bottom: 0; }
+  .status-row:last-child { border-bottom: 0; }
+  .is-full { background: var(--pink); color: var(--ink); padding: 1px 6px; }
+  .is-open { background: var(--yellow); color: var(--ink); padding: 1px 6px; }
 
-  /* Why */
-  .why-copy { padding-top: 6px; }
-  .pillars {
-    margin-top: clamp(40px, 6vw, 72px);
+  .list-head {
+    margin-top: clamp(40px, 6vw, 64px);
+    margin-bottom: 8px;
+    color: var(--ultra);
+  }
+
+  .bands-note {
+    margin-top: 28px;
+    max-width: 62ch;
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  .cta { padding-top: 0; }
+  .cta-inner {
+    padding-top: clamp(48px, 7vw, 80px);
     display: grid;
-    gap: 16px;
-    grid-template-columns: 1fr;
+    gap: 18px;
+    justify-items: start;
+    max-width: 640px;
   }
-  @media (min-width: 640px) { .pillars { grid-template-columns: 1fr 1fr; } }
-  @media (min-width: 1000px) { .pillars { grid-template-columns: repeat(4, 1fr); } }
-  .pillars .card::after {
-    content: "";
-    position: absolute;
-    right: -40px; top: -40px;
-    width: 120px; height: 120px;
-    border-radius: 50%;
-    background: var(--yellow);
-    filter: blur(40px);
-    opacity: 0;
-    transition: opacity 400ms;
-  }
-  .pillars .card:nth-child(even)::after { background: var(--pink); }
-  .pillars .card:hover::after { opacity: 0.45; }
-
-  /* How */
-  .how { background: var(--ultra); color: var(--paper); border-top: 2px solid var(--ink); border-bottom: 2px solid var(--ink); overflow: hidden; }
-  .how .eyebrow { color: var(--yellow); }
-  .how h2 em { color: var(--pink); }
-  .how .muted { color: rgba(255,255,255,0.78); }
-  .how .win.on-blue { background: var(--paper); color: var(--ink); }
-  .how .win.on-blue .eyebrow { color: var(--ultra); }
-  .how .win.on-blue p { color: var(--ink); }
-  .how .win.on-blue .tag.outline { color: var(--ink); border-color: var(--ink); }
-  .steps {
-    margin-top: clamp(36px, 5vw, 64px);
-    display: grid;
-    gap: 28px;
-    grid-template-columns: 1fr;
-  }
-  @media (min-width: 820px) { .steps { grid-template-columns: repeat(3, 1fr); gap: 36px; } }
-  .step { position: relative; padding-top: 18px; border-top: 2px solid var(--pink); }
-  .step:nth-child(2) { border-top-color: var(--yellow); }
-  .step:nth-child(3) { border-top-color: var(--orange); }
-  .step-k {
-    font-family: var(--font-mono);
-    font-size: 12px;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.7);
-    margin-bottom: 10px;
-  }
-  .step h3 { margin-bottom: 10px; }
-  .bands { margin-top: clamp(40px, 6vw, 72px); }
-  .bands-body { display: grid; gap: 22px; grid-template-columns: 1fr; }
-  @media (min-width: 760px) { .bands-body { grid-template-columns: 1fr 1fr 1fr; gap: 28px; } }
-
-  /* Amy */
-  .amy .img-slot { max-width: 420px; }
-
-  /* CTA */
-  .cta { overflow: hidden; text-align: center; background: var(--tint); border-top: 2px solid var(--ink); }
-  .cta-inner { position: relative; z-index: 1; display: grid; justify-items: center; gap: 20px; }
-  .cta-inner .lede { max-width: 46ch; }
 </style>
