@@ -20,6 +20,11 @@ const learn = [
     title: 'Finishing',
     body: 'Every learner leaves with something that exists: a product, a prototype, a plan, a business with a name.',
   },
+  {
+    title: 'The tools professionals use',
+    body: 'SketchUp, AutoCAD, Unreal Engine, Python. The versions people use at work, instead of Scratch Jr or a watered down stand-in. By third grade, kids in my programs can reload a 3D printer and sketch out a wireframe with a UI and pseudo code. The goal is to get them ready for technology that does not exist yet.',
+    wide: true,
+  },
 ];
 
 const steps = [
@@ -88,7 +93,7 @@ const steps = [
       <h3 class="list-head">What they learn</h3>
       <div class="deflist">
         {learn.map((item) => (
-          <div>
+          <div class={item.wide ? 'wide' : undefined}>
             <h3>{item.title}</h3>
             <p class="soft">{item.body}</p>
           </div>
@@ -123,10 +128,10 @@ const steps = [
       <div class="stack">
         <p class="lede">I am a tech nerd and business human who is supremely passionate about helping other people build and create things that they previously thought were impossible. Personally, I find that nothing is impossible as long as you have the patience to sit down and figure it out.</p>
         <p>
-          My career has run on two tracks at the same time. On the education side, I built the design and technology program at Portfolio School in New York and led tech and innovation at a school in San Francisco.
+          I have spent over a decade teaching design, fabrication, and whatever technology was newest at the time, including building the design and technology program at Portfolio School in New York and leading tech and innovation at a school in San Francisco. The curriculum this cohort runs on is mine. I built it independently and I have been sharpening it the whole time.
         </p>
         <p>
-          On the business side, I ran ecommerce and the full tech stack at a nine-figure skincare company, have run tech for B2B and manufacturing companies, and today I work with B2B companies at the eight-figure Series B and C stage.
+          On the business side, I was director of ecommerce and the technology stack at a nine-figure CPG company. Today I run a technology and digital consulting company that works with B2B and B2C brands with eight figures in Series A and B funding, including native AI companies, and I'm a HubSpot technology partner with a set of apps that keep CRM data safe, clean, and recoverable when something goes wrong.
         </p>
         <p>
           Almost nobody has done both, and that is why I can teach this. I know what it takes to turn an idea into a working thing because I have done it where the stakes were real, and I know how to teach it because I have spent years doing that too. AB Combinator is me finally answering the question parents kept asking. I'm building it in public, one cohort at a time.
@@ -182,6 +187,8 @@ const steps = [
     margin-bottom: 8px;
     color: var(--ultra);
   }
+  .deflist .wide { grid-column: 1 / -1; }
+  .deflist .wide p { max-width: 70ch; }
 
   .bands-note {
     margin-top: 28px;
